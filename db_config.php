@@ -12,39 +12,21 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Add function
-if (isset($_POST['add'])) {
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $sql = "INSERT INTO users (name, email) VALUES (?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ss", $name, $email);
-    $stmt->execute();
-    $stmt->close();
-    header("Location: view.php");
-}
+$sql = "SELECT * FROM user";
 
-// Edit function
-if (isset($_POST['edit'])) {
-    $id = $_POST['id'];
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $sql = "UPDATE users SET name=?, email=? WHERE id=?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssi", $name, $email, $id);
-    $stmt->execute();
-    $stmt->close();
-    header("Location: view.php");
-}
+if($result = mysql_query($con, $sql))
+{
+    $resultArray = array();
+    $tempArray = array();
 
-// Delete function
-if (isset($_GET['delete'])) {
-    $id = $_GET['delete'];
-    $sql = "DELETE FROM users WHERE id=?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $id);
-    $stmt->execute();
-    $stmt->close();
-    header("Location: view.php");
+    while($row = $result->fetch_object())
+    {
+        $tempArray = $row;
+        array_push($resultArray, $tempArray);
+    }
+    
+    echo json_encode($resultArray);
 }
+// Close connectionsmysqli_close($con);
+mysql_close($con);
 ?>
