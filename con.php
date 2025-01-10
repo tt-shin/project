@@ -1,8 +1,8 @@
 <?php
-$host = "<AWS_RDS_ENDPOINT>";
-$username = "<DB_USERNAME>";
-$password = "<DB_PASSWORD>";
-$dbname = "<DB_NAME>";
+$host = "userdb.cc7tazxltrra.us-east-1.rds.amazonaws.com";
+$username = "root";
+$password = "user1234";
+$dbname = "userdb";
 
 // Create a connection
 $conn = new mysqli($host, $username, $password, $dbname);
