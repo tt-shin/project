@@ -2,8 +2,8 @@
 include 'db_config.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $name = $_POST['userid'];
-    $email = $_POST['username'];
+    $userid = $_POST['userid'];
+    $username = $_POST['username'];
     $sql = "INSERT INTO user (userid, username) VALUES (?, ?)";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ss", $userid, $username);
