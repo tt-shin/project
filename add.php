@@ -2,11 +2,11 @@
 include 'db_config.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $sql = "INSERT INTO users (name, email) VALUES (?, ?)";
+    $name = $_POST['userid'];
+    $email = $_POST['username'];
+    $sql = "INSERT INTO user (userid, username) VALUES (?, ?)";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ss", $name, $email);
+    $stmt->bind_param("ss", $userid, $username);
     $stmt->execute();
     $stmt->close();
     header("Location: view.php");
@@ -21,8 +21,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
     <form method="POST">
-        <label>Name: <input type="text" name="name" required></label><br>
-        <label>Email: <input type="email" name="email" required></label><br>
+        <label>ID: <input type="int" name="userid" required></label><br>
+        <label>Name: <input type="text" name="username" required></label><br>
         <button type="submit">Add</button>
     </form>
 </body>
