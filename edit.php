@@ -10,11 +10,10 @@ $result = $stmt->get_result();
 $user = $result->fetch_assoc();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $sql = "UPDATE users SET name=?, email=? WHERE id=?";
+    $username = $_POST['username'];
+    $sql = "UPDATE user SET username=? WHERE userid=?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssi", $name, $email, $id);
+    $stmt->bind_param("ssi", $username);
     $stmt->execute();
     $stmt->close();
     header("Location: view.php");
@@ -29,8 +28,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
     <form method="POST">
-        <label>Name: <input type="text" name="name" value="<?= $user['name'] ?>" required></label><br>
-        <label>Email: <input type="email" name="email" value="<?= $user['email'] ?>" required></label><br>
+        <label>Id: <input type="int" name="userid" value="<?= $user['userid'] ?>" required></label><br>
+        <label>Name: <input type="text" name="username" value="<?= $user['username'] ?>" required></label><br>
         <button type="submit">Save Changes</button>
     </form>
 </body>
