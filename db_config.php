@@ -12,7 +12,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT * FROM user";
+$sql = "SELECT * FROM 'user'";
 
 if($result = mysql_query($con, $sql))
 {
