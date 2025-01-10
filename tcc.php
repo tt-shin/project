@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php
+include 'db_config.php';
+?>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
