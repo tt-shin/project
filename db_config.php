@@ -14,7 +14,7 @@ if ($conn->connect_error) {
 
 $sql = "SELECT * FROM 'user'";
 
-if($result = mysql_query($con, $sql))
+if($result = mysqli_query($con, $sql))
 {
     $resultArray = array();
     $tempArray = array();
@@ -28,5 +28,5 @@ if($result = mysql_query($con, $sql))
     echo json_encode($resultArray);
 }
 // Close connectionsmysqli_close($con);
-mysql_close($con);
+mysqli_close($con);
 ?>
