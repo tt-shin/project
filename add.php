@@ -5,12 +5,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $userid = $_POST['userid'];
     $username = $_POST['username'];
     $sql = "INSERT INTO user (userid, username) VALUES (?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ss", $userid, $username);
-    $stmt->execute();
-    $stmt->close();
-    header("Location: view.php");
-    exit();
 }
 ?>
 
